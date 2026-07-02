@@ -58,6 +58,8 @@ const PROJECTS = [
   },
 ];
 
+const FEATURED = PROJECTS[0];
+
 export default function Projects() {
   const [activeCategory, setActiveCategory] = useState("Main Projects");
   const categories = ["Main Projects", "My Projects"];
@@ -67,7 +69,71 @@ export default function Projects() {
   return (
     <section id="projects" style={{ padding: "8rem 2rem", maxWidth: "1100px", margin: "0 auto" }}>
       <SectionLabel label="03 — Projects" />
-      <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-between", alignItems: "flex-end", marginBottom: "4rem", gap: "2rem" }}>
+
+      {/* ── Featured Project Banner ── */}
+      {activeCategory === "Main Projects" && (
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7 }}
+          whileHover={{ y: -4 }}
+          style={{
+            marginBottom: "3rem",
+            borderRadius: "24px",
+            overflow: "hidden",
+            position: "relative",
+            minHeight: "220px",
+            display: "flex",
+            alignItems: "flex-end",
+            cursor: "default",
+            backgroundImage: FEATURED.image
+              ? `linear-gradient(100deg, rgba(6,6,8,0.97) 40%, rgba(6,6,8,0.6) 100%), url(${FEATURED.image})`
+              : "none",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            border: "1px solid rgba(249,115,22,0.2)",
+            boxShadow: "0 0 60px rgba(249,115,22,0.08), inset 0 1px 0 rgba(255,255,255,0.05)",
+            transition: "all 0.3s ease",
+          }}
+        >
+          <div style={{
+            position: "absolute", top: 0, right: 0, bottom: 0, left: "45%",
+            background: "linear-gradient(90deg, transparent, rgba(249,115,22,0.04))",
+            pointerEvents: "none"
+          }} />
+          <div style={{ padding: "2.5rem 3rem", position: "relative", zIndex: 1, flex: 1 }}>
+            <div style={{
+              display: "inline-block", fontSize: "10px", letterSpacing: "2px",
+              fontWeight: 700, textTransform: "uppercase",
+              color: "var(--accent-primary)", background: "rgba(249,115,22,0.1)",
+              border: "1px solid rgba(249,115,22,0.25)", borderRadius: "99px",
+              padding: "4px 12px", marginBottom: "1rem"
+            }}>⭐ Featured Project</div>
+            <h3 style={{
+              fontFamily: "var(--font-heading)", fontSize: "clamp(1.5rem, 3vw, 2.2rem)",
+              fontWeight: 800, color: "var(--text-primary)", margin: "0 0 0.75rem",
+              letterSpacing: "-0.03em"
+            }}>{FEATURED.title}</h3>
+            <p style={{
+              fontSize: "1rem", color: "var(--text-secondary)",
+              lineHeight: 1.65, margin: "0 0 1.5rem", fontWeight: 300, maxWidth: "580px"
+            }}>{FEATURED.desc}</p>
+            <div style={{ display: "flex", gap: "0.6rem", flexWrap: "wrap" }}>
+              {FEATURED.tags.map(tag => (
+                <span key={tag} style={{
+                  fontSize: "11px", letterSpacing: "0.5px", fontWeight: 600,
+                  color: "var(--accent-secondary)", background: "rgba(249,115,22,0.1)",
+                  padding: "5px 12px", borderRadius: "99px",
+                }}>{tag}</span>
+              ))}
+              <span style={{ marginLeft: "auto", fontSize: "12px", color: "var(--text-secondary)", fontWeight: 600, alignSelf: "center" }}>{FEATURED.year}</span>
+            </div>
+          </div>
+        </motion.div>
+      )}
+
+      <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-between", alignItems: "flex-end", marginBottom: "2.5rem", gap: "2rem" }}>
         <motion.h2 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}

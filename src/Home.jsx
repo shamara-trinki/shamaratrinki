@@ -1,5 +1,5 @@
-import Navbar from "./components/Navbar";
-import { Mail, Briefcase } from 'lucide-react';
+﻿import Navbar from "./components/Navbar";
+import { Mail, Briefcase, Code2 } from "lucide-react";
 import Hero from "./components/Hero";
 import About from "./components/About";
 import Skills from "./components/Skills";
@@ -8,33 +8,9 @@ import Experience from "./components/Experience";
 import Certificates from "./components/Certificates";
 import Contact from "./components/Contact";
 
-function GridBg() {
-  return (
-    <div style={{
-      position: "fixed", inset: 0, zIndex: 0, pointerEvents: "none",
-      backgroundImage: `
-        linear-gradient(rgba(249,115,22,0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(249,115,22,0.03) 1px, transparent 1px)
-      `,
-      backgroundSize: "48px 48px",
-    }} />
-  );
-}
-
-function AmbientGlow() {
-  return (
-    <div style={{ position: "fixed", inset: 0, zIndex: 0, pointerEvents: "none", overflow: "hidden" }}>
-      <div style={{ position: "absolute", top: "-10%", left: "-10%", width: "40vw", height: "40vw", background: "radial-gradient(circle, rgba(249,115,22,0.15) 0%, transparent 70%)", borderRadius: "50%", filter: "blur(80px)" }} />
-      <div style={{ position: "absolute", bottom: "-10%", right: "-10%", width: "40vw", height: "40vw", background: "radial-gradient(circle, rgba(249,115,22,0.1) 0%, transparent 70%)", borderRadius: "50%", filter: "blur(80px)" }} />
-    </div>
-  );
-}
-
 export default function Home() {
   return (
     <div style={{ position: "relative" }}>
-      <GridBg />
-      <AmbientGlow />
       <Navbar />
       <main style={{ position: "relative", zIndex: 1 }}>
         <Hero />
@@ -45,21 +21,64 @@ export default function Home() {
         <Certificates />
         <Contact />
       </main>
+
       <footer style={{
-        textAlign: "center", padding: "3rem 2rem",
-        fontSize: "14px", color: "var(--text-secondary)", fontWeight: 400,
-        borderTop: "1px solid var(--glass-border)", position: "relative", zIndex: 1,
-        display: "flex", flexDirection: "column", alignItems: "center", gap: "1.5rem"
+        position: "relative", zIndex: 1,
+        padding: "3rem 2rem 2.5rem",
+        borderTop: "1px solid rgba(255,255,255,0.05)",
       }}>
-        <div style={{ display: "flex", gap: "2rem", flexWrap: "wrap", justifyContent: "center" }}>
-          <a href="mailto:shamara.trinki@gmail.com" style={{ color: "var(--text-secondary)", textDecoration: "none", display: "flex", alignItems: "center", gap: "8px", transition: "color 0.2s" }} onMouseEnter={e => e.currentTarget.style.color="var(--accent-primary)"} onMouseLeave={e => e.currentTarget.style.color="var(--text-secondary)"}>
-            <Mail size={16} /> shamara.trinki@gmail.com
-          </a>
-          <a href="https://linkedin.com/in/shamara-trinki28/" target="_blank" rel="noopener noreferrer" style={{ color: "var(--text-secondary)", textDecoration: "none", display: "flex", alignItems: "center", gap: "8px", transition: "color 0.2s" }} onMouseEnter={e => e.currentTarget.style.color="var(--accent-primary)"} onMouseLeave={e => e.currentTarget.style.color="var(--text-secondary)"}>
-            <Briefcase size={16} /> LinkedIn
-          </a>
+        <div style={{
+          position: "absolute", top: 0, left: "50%", transform: "translateX(-50%)",
+          width: "60%", height: "1px",
+          background: "linear-gradient(90deg, transparent, var(--accent-primary), transparent)",
+          opacity: 0.4
+        }} />
+
+        <div style={{
+          maxWidth: "1200px", margin: "0 auto",
+          display: "flex", flexWrap: "wrap",
+          justifyContent: "space-between", alignItems: "center", gap: "1.5rem"
+        }}>
+          <div>
+            <div style={{
+              fontFamily: "var(--font-heading)", fontWeight: 800,
+              fontSize: "1.1rem", letterSpacing: "-0.02em",
+              color: "var(--text-primary)", marginBottom: "4px"
+            }}>
+              Shamara<span className="text-gradient"> Trinki</span>
+            </div>
+            <div style={{ fontSize: "12px", color: "var(--text-secondary)", fontWeight: 400 }}>
+              Full-Stack Developer · Associate Software Engineer
+            </div>
+          </div>
+
+          <div style={{ display: "flex", gap: "0.75rem" }}>
+            {[
+              { icon: <Mail size={16} />, href: "mailto:shamaratrinki@gmail.com", label: "Email" },
+              { icon: <Briefcase size={16} />, href: "https://linkedin.com/in/shamara-trinki28/", label: "LinkedIn" },
+              { icon: <Code2 size={16} />, href: "https://github.com/shamara-trinki", label: "GitHub" },
+            ].map(link => (
+              <a key={link.label} href={link.href} target="_blank" rel="noopener noreferrer"
+                title={link.label}
+                style={{
+                  width: 38, height: 38, borderRadius: "10px",
+                  display: "flex", alignItems: "center", justifyContent: "center",
+                  background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)",
+                  color: "var(--text-secondary)", textDecoration: "none",
+                  transition: "all 0.25s ease"
+                }}
+                onMouseEnter={e => { e.currentTarget.style.color = "var(--accent-primary)"; e.currentTarget.style.borderColor = "rgba(249,115,22,0.4)"; e.currentTarget.style.background = "rgba(249,115,22,0.08)"; }}
+                onMouseLeave={e => { e.currentTarget.style.color = "var(--text-secondary)"; e.currentTarget.style.borderColor = "rgba(255,255,255,0.08)"; e.currentTarget.style.background = "rgba(255,255,255,0.04)"; }}
+              >
+                {link.icon}
+              </a>
+            ))}
+          </div>
+
+          <div style={{ fontSize: "12px", color: "var(--text-secondary)", fontWeight: 400 }}>
+            © {new Date().getFullYear()} Shamara Trinki. All Rights Reserved.
+          </div>
         </div>
-        <div>© {new Date().getFullYear()} Shamara Trinki. All Rights Reserved.</div>
       </footer>
     </div>
   );
