@@ -8,12 +8,38 @@ export default function Contact() {
   const [sent, setSent] = useState(false);
   const [focused, setFocused] = useState("");
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (form.name && form.email && form.message) {
-      setSent(true);
-      setTimeout(() => setSent(false), 3000);
-      setForm({ name: "", email: "", message: "" });
+      // Get your free access key from https://web3forms.com/
+      const accessKey = "4866a2a3-92e8-4d32-b23e-9444b4e40b45"; 
+      
+      try {
+        const response = await fetch("https://api.web3forms.com/submit", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json"
+          },
+          body: JSON.stringify({
+            access_key: accessKey,
+            name: form.name,
+            email: form.email,
+            message: form.message
+          })
+        });
+        
+        if (response.ok) {
+          setSent(true);
+          setTimeout(() => setSent(false), 3000);
+          setForm({ name: "", email: "", message: "" });
+        } else {
+          alert("Failed to send message. Please check your access key.");
+        }
+      } catch (error) {
+        console.error("Error sending message:", error);
+        alert("An error occurred while sending the message.");
+      }
     }
   };
 
