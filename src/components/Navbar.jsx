@@ -45,7 +45,7 @@ export default function Navbar() {
             fontFamily: "var(--font-heading)", fontSize: "1.2rem", fontWeight: 800, letterSpacing: "1px",
             color: "var(--text-primary)"
           }}>
-            YN<span style={{ color: "var(--accent-primary)" }}>.</span>
+            ST<span style={{ color: "var(--accent-primary)" }}></span>
           </div>
 
           {/* Desktop Nav */}
