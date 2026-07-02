@@ -1,4 +1,5 @@
 import Navbar from "./components/Navbar";
+import { Mail, Briefcase } from 'lucide-react';
 import Hero from "./components/Hero";
 import About from "./components/About";
 import Skills from "./components/Skills";
@@ -45,11 +46,20 @@ export default function Home() {
         <Contact />
       </main>
       <footer style={{
-        textAlign: "center", padding: "2rem",
+        textAlign: "center", padding: "3rem 2rem",
         fontSize: "14px", color: "var(--text-secondary)", fontWeight: 400,
-        borderTop: "1px solid var(--glass-border)", position: "relative", zIndex: 1
+        borderTop: "1px solid var(--glass-border)", position: "relative", zIndex: 1,
+        display: "flex", flexDirection: "column", alignItems: "center", gap: "1.5rem"
       }}>
-        © {new Date().getFullYear()} Shamara Trinki. All Rights Reserved.
+        <div style={{ display: "flex", gap: "2rem", flexWrap: "wrap", justifyContent: "center" }}>
+          <a href="mailto:shamara.trinki@gmail.com" style={{ color: "var(--text-secondary)", textDecoration: "none", display: "flex", alignItems: "center", gap: "8px", transition: "color 0.2s" }} onMouseEnter={e => e.currentTarget.style.color="var(--accent-primary)"} onMouseLeave={e => e.currentTarget.style.color="var(--text-secondary)"}>
+            <Mail size={16} /> shamara.trinki@gmail.com
+          </a>
+          <a href="https://linkedin.com/in/shamara-trinki28/" target="_blank" rel="noopener noreferrer" style={{ color: "var(--text-secondary)", textDecoration: "none", display: "flex", alignItems: "center", gap: "8px", transition: "color 0.2s" }} onMouseEnter={e => e.currentTarget.style.color="var(--accent-primary)"} onMouseLeave={e => e.currentTarget.style.color="var(--text-secondary)"}>
+            <Briefcase size={16} /> LinkedIn
+          </a>
+        </div>
+        <div>© {new Date().getFullYear()} Shamara Trinki. All Rights Reserved.</div>
       </footer>
     </div>
   );

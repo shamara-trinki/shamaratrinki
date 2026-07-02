@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { ArrowRight, Mail } from 'lucide-react';
+import { ArrowRight, Mail, ChevronDown, Code } from 'lucide-react';
 import heroImg from '../assets/my.png';
 
 export default function Hero() {
@@ -32,196 +32,245 @@ export default function Hero() {
       minHeight: "100vh", display: "flex", alignItems: "center",
       position: "relative", padding: "6rem 2rem 2rem", overflow: "hidden"
     }}>
+      {/* Background ambient glows */}
+      <div style={{
+        position: "absolute", top: "20%", left: "10%",
+        width: "40vw", height: "40vw",
+        background: "radial-gradient(circle, var(--accent-glow) 0%, transparent 70%)",
+        filter: "blur(80px)", zIndex: 0, opacity: 0.6
+      }} />
+      <div style={{
+        position: "absolute", bottom: "10%", right: "10%",
+        width: "30vw", height: "30vw",
+        background: "radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 70%)",
+        filter: "blur(60px)", zIndex: 0
+      }} />
+
       <div style={{ 
-        position: "relative", zIndex: 1, maxWidth: "1200px", margin: "0 auto",
-        display: "grid", gridTemplateColumns: "1fr 1fr", gap: "4rem", alignItems: "center",
-        '@media (maxWidth: 900px)': { gridTemplateColumns: "1fr", textAlign: "center" }
-      }}>
+        position: "relative", zIndex: 1, maxWidth: "1200px", margin: "0 auto", width: "100%",
+        display: "grid", gridTemplateColumns: "1.2fr 0.8fr", gap: "5rem", alignItems: "center",
+      }} className="hero-grid">
         
         {/* Left Side: Text */}
-        <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-start" }}>
+        <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-start" }} className="hero-text">
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             style={{
-              display: "inline-flex", alignItems: "center", gap: "8px",
-              fontSize: "12px", letterSpacing: "4px",
-              color: "var(--accent-primary)", textTransform: "uppercase", fontWeight: 700,
-              border: "1px solid var(--glass-border)",
-              padding: "7px 20px", borderRadius: "999px",
-              marginBottom: "2rem",
-              background: "rgba(249,115,22,0.06)",
+              display: "inline-flex", alignItems: "center", gap: "10px",
+              fontSize: "12px", letterSpacing: "2px",
+              color: "var(--text-primary)", textTransform: "uppercase", fontWeight: 600,
+              padding: "6px 16px", borderRadius: "4px",
+              marginBottom: "2.5rem",
+              background: "rgba(255, 255, 255, 0.03)",
+              border: "1px solid rgba(255, 255, 255, 0.08)",
+              backdropFilter: "blur(10px)"
             }}
           >
             <span style={{ 
-              width: 7, height: 7, borderRadius: "50%", 
+              width: 6, height: 6, borderRadius: "50%", 
               background: "var(--accent-primary)", display: "inline-block", 
-              boxShadow: "0 0 10px var(--accent-glow)" 
+              boxShadow: "0 0 12px var(--accent-primary)" 
             }} />
-            Available for hire
+            Available for New Opportunities
           </motion.div>
 
           <motion.h1 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
+            transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
             style={{
               fontFamily: "var(--font-heading)",
-              fontSize: "clamp(1.8rem, 6vw, 5.5rem)",
-              fontWeight: 900, lineHeight: 1.05,
+              fontSize: "clamp(2.5rem, 6vw, 5rem)",
+              fontWeight: 800, lineHeight: 1.1,
               margin: "0 0 1rem",
-              letterSpacing: "-1px",
-              textAlign: "left"
+              letterSpacing: "-0.03em",
+              color: "var(--text-primary)",
             }}
           >
-            <span className="text-gradient">Shamara Trinki Perera</span>
+            Hi, I'm <br />
+            <span style={{
+              background: "linear-gradient(120deg, #ffffff 0%, var(--accent-primary) 100%)",
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+              backgroundClip: "text"
+            }}>Shamara Trinki</span>
           </motion.h1>
 
           <motion.div 
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
+            transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
             style={{
-              fontSize: "clamp(1.1rem, 2vw, 1.4rem)",
-              color: "var(--accent-primary)", marginBottom: "1.5rem",
-              minHeight: "2.5rem", fontWeight: 500, letterSpacing: "2px",
+              fontSize: "clamp(1.1rem, 2vw, 1.5rem)",
+              color: "var(--text-secondary)", marginBottom: "2rem",
+              minHeight: "2rem", fontWeight: 400, letterSpacing: "1px",
+              fontFamily: "var(--font-heading)"
             }}
           >
-            {typed}<span style={{ borderRight: "2px solid var(--accent-primary)", animation: "blink 1s step-end infinite" }}>&nbsp;</span>
+            <span style={{ color: "var(--text-primary)", fontWeight: 500 }}>&gt;</span> {typed}
+            <span style={{ 
+              display: "inline-block", width: "2px", height: "1.2em", 
+              background: "var(--accent-primary)", marginLeft: "4px", 
+              verticalAlign: "middle", animation: "blink 1s step-end infinite" 
+            }} />
           </motion.div>
 
           <motion.p 
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.6, delay: 0.6 }}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
             style={{
-              fontSize: "1.1rem", color: "var(--text-secondary)",
-              lineHeight: 1.8, maxWidth: "540px",
-              margin: "0 0 3rem 0", fontWeight: 300, textAlign: "left"
+              fontSize: "1.125rem", color: "rgba(255,255,255,0.7)",
+              lineHeight: 1.7, maxWidth: "560px",
+              margin: "0 0 3.5rem 0", fontWeight: 300
             }}
           >
-            I build scalable systems, ship beautiful interfaces, and architect backends that never sleep. 6 years turning complex problems into clean code.
+            Engineering elegant solutions to complex problems. I architect scalable backends and craft intuitive, highly-performant web applications.
           </motion.p>
 
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.8 }}
-            style={{ display: "flex", gap: "1rem", flexWrap: "wrap" }}
+            transition={{ duration: 0.8, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
+            style={{ display: "flex", gap: "1.25rem", flexWrap: "wrap" }}
+            className="hero-buttons"
           >
             <a href="#projects" style={{
-              display: "inline-flex", alignItems: "center", gap: "8px",
-              fontSize: "14px", letterSpacing: "2px",
-              padding: "14px 36px",
-              background: "var(--accent-primary)", color: "#000",
-              textDecoration: "none", fontWeight: 700,
-              borderRadius: "4px", textTransform: "uppercase",
-              border: "1px solid var(--accent-secondary)",
-              transition: "all 0.3s ease",
-              boxShadow: "0 0 20px var(--accent-glow)"
-            }}>
-              View Projects <ArrowRight size={18} />
-            </a>
-            <a href="#contact" className="glass-panel" style={{
-              display: "inline-flex", alignItems: "center", gap: "8px",
-              fontSize: "14px", letterSpacing: "2px",
-              padding: "14px 36px", color: "var(--text-primary)",
+              display: "inline-flex", alignItems: "center", gap: "10px",
+              fontSize: "15px", letterSpacing: "1px",
+              padding: "16px 32px",
+              background: "var(--accent-primary)", color: "#fff",
               textDecoration: "none", fontWeight: 600,
-              borderRadius: "4px", textTransform: "uppercase",
-              transition: "all 0.3s ease",
-            }}>
-              Contact Me <Mail size={18} />
-            </a>
-          </motion.div>
-
-          <motion.div 
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1, delay: 1.2 }}
-            style={{
-              display: "flex", gap: "2.5rem", flexWrap: "wrap",
-              marginTop: "4rem", borderTop: "1px solid var(--glass-border)",
-              paddingTop: "2rem", width: "100%"
+              borderRadius: "4px",
+              transition: "all 0.3s cubic-bezier(0.16, 1, 0.3, 1)",
             }}
-          >
-            {[
-              { num: "6+", label: "Years Exp." }, 
-              { num: "40+", label: "Projects" }, 
-              { num: "15+", label: "Clients" }
-            ].map((stat, i) => (
-              <div key={stat.label} style={{ textAlign: "left" }}>
-                <div style={{
-                  fontFamily: "var(--font-heading)",
-                  fontSize: "2rem", fontWeight: 800,
-                  color: "var(--text-primary)", marginBottom: "4px"
-                }}>{stat.num}</div>
-                <div style={{
-                  fontSize: "11px", letterSpacing: "2px",
-                  color: "var(--text-secondary)", textTransform: "uppercase", fontWeight: 600,
-                }}>{stat.label}</div>
-              </div>
-            ))}
+            onMouseOver={(e) => { e.currentTarget.style.transform = "translateY(-2px)"; e.currentTarget.style.boxShadow = "0 10px 25px -5px var(--accent-glow)"; }}
+            onMouseOut={(e) => { e.currentTarget.style.transform = "translateY(0)"; e.currentTarget.style.boxShadow = "none"; }}
+            >
+              Explore Work <ArrowRight size={18} />
+            </a>
+            <a href="#contact" style={{
+              display: "inline-flex", alignItems: "center", gap: "10px",
+              fontSize: "15px", letterSpacing: "1px",
+              padding: "16px 32px", color: "var(--text-primary)",
+              textDecoration: "none", fontWeight: 500,
+              borderRadius: "4px",
+              background: "rgba(255, 255, 255, 0.03)",
+              border: "1px solid rgba(255, 255, 255, 0.1)",
+              backdropFilter: "blur(10px)",
+              transition: "all 0.3s cubic-bezier(0.16, 1, 0.3, 1)",
+            }}
+            onMouseOver={(e) => { e.currentTarget.style.background = "rgba(255, 255, 255, 0.08)"; e.currentTarget.style.transform = "translateY(-2px)"; }}
+            onMouseOut={(e) => { e.currentTarget.style.background = "rgba(255, 255, 255, 0.03)"; e.currentTarget.style.transform = "translateY(0)"; }}
+            >
+              Get in Touch <Mail size={18} />
+            </a>
           </motion.div>
         </div>
 
         {/* Right Side: Image */}
         <motion.div
-          initial={{ opacity: 0, x: 50, scale: 0.9 }}
-          animate={{ opacity: 1, x: 0, scale: 1 }}
-          transition={{ duration: 0.8, delay: 0.3 }}
-          style={{ display: "flex", justifyContent: "center", alignItems: "center", position: "relative", marginTop: "3rem" }}
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 1.2, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+          style={{ display: "flex", justifyContent: "center", alignItems: "center", position: "relative", marginTop: "-30px" }}
+          className="hero-image-wrapper"
         >
-          {/* Decorative background elements for image */}
-          <div style={{
-            position: "absolute", width: "110%", height: "110%",
-            borderRadius: "30% 70% 70% 30% / 30% 30% 70% 70%",
-            background: "linear-gradient(135deg, var(--accent-glow) 0%, transparent 100%)",
-            animation: "morph 8s ease-in-out infinite",
-            zIndex: -1
-          }} />
-          
-          <img 
-            src={heroImg} 
-            alt="Profile" 
-            style={{
-              width: "100%", maxWidth: "550px", height: "auto",
-              objectFit: "cover",
-              filter: "drop-shadow(0 0 30px var(--accent-glow))"
+          {/* Soft glowing animated blob behind image */}
+          <motion.div
+            animate={{ 
+              scale: [1, 1.1, 1],
+              rotate: [0, 90, 0]
             }}
+            transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
+            style={{
+              position: "absolute",
+              width: "120%",
+              height: "120%",
+              background: "radial-gradient(circle, var(--accent-glow) 0%, transparent 60%)",
+              filter: "blur(40px)",
+              zIndex: 0,
+              opacity: 0.8
+            }} 
           />
+
+          <motion.div
+            animate={{ y: [0, -12, 0] }}
+            transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+            style={{ position: "relative", zIndex: 1, width: "100%", maxWidth: "420px" }}
+          >
+            <div style={{
+              position: "relative",
+              borderRadius: "24px",
+              padding: "8px",
+              background: "linear-gradient(145deg, rgba(255,255,255,0.1), rgba(255,255,255,0.02))",
+              backdropFilter: "blur(10px)",
+              boxShadow: "0 25px 50px -12px rgba(0,0,0,0.5)"
+            }}>
+              <img 
+                src={heroImg} 
+                alt="Shamara Trinki - Full Stack Developer" 
+                style={{
+                  width: "100%", height: "auto",
+                  objectFit: "cover",
+                  borderRadius: "18px",
+                  display: "block"
+                }}
+              />
+            </div>
+
+          </motion.div>
         </motion.div>
       </div>
 
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.8, duration: 1 }}
+        style={{
+          position: "absolute", bottom: "40px", left: "50%",
+          transform: "translateX(-50%)", display: "flex", flexDirection: "column",
+          alignItems: "center", gap: "12px", color: "rgba(255,255,255,0.4)"
+        }}
+        className="scroll-indicator"
+      >
+        <span style={{ fontSize: "10px", letterSpacing: "4px", textTransform: "uppercase", fontWeight: 500 }}>Scroll Down</span>
+        <motion.div animate={{ y: [0, 8, 0] }} transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}>
+          <ChevronDown size={18} />
+        </motion.div>
+      </motion.div>
+
       <style>{`
         @keyframes blink { 50% { opacity: 0; } }
-        @keyframes morph {
-          0% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
-          50% { border-radius: 70% 30% 30% 70% / 70% 70% 30% 30%; }
-          100% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
-        }
         
-        @media (max-width: 900px) {
-          #home > div {
+        @media (max-width: 992px) {
+          .hero-grid {
             grid-template-columns: 1fr !important;
             text-align: center !important;
-            gap: 3rem !important;
-            margin-top: 2rem !important;
+            gap: 4rem !important;
           }
-          #home .text-gradient {
-            text-align: center !important;
-          }
-          #home > div > div:first-child {
+          .hero-text {
             align-items: center !important;
           }
-          #home > div > div:first-child p, #home > div > div:first-child h1 {
+          .hero-text h1, .hero-text p {
             text-align: center !important;
           }
-          #home > div > div:first-child > div:last-child {
+          .hero-buttons {
             justify-content: center !important;
           }
-          #home > div > div:first-child > div:last-child > div {
-            text-align: center !important;
+          .hero-image-wrapper {
+            justify-content: center !important;
+          }
+          .hero-badge {
+            left: 20px !important;
+            bottom: 20px !important;
+          }
+        }
+        @media (max-width: 768px) {
+          .scroll-indicator {
+            display: none !important;
           }
         }
       `}</style>
