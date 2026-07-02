@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 
-const NAV_ITEMS = ["Home", "About", "Skills", "Projects", "Experience", "Contact"];
+const NAV_ITEMS = ["Home", "About", "Skills", "Projects", "Experience", "Certificates", "Contact"];
 
 export default function Navbar() {
   const [active, setActive] = useState("Home");
