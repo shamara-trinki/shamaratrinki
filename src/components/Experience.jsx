@@ -4,34 +4,38 @@ import { Briefcase } from 'lucide-react';
 
 const EXPERIENCE = [
   {
-    role: "Senior Full Stack Engineer",
-    company: "Nexus Technologies",
-    period: "2022 – Present",
-    points: [
-      "Led architecture of microservices platform serving 2M+ daily users",
-      "Reduced API latency by 60% through Redis caching strategies",
-      "Mentored 4 junior developers and ran weekly code review sessions",
-    ],
+    company: "SoftVision IT Group (Pvt) Ltd",
+    roles: [
+      {
+        role: "Associate Software Engineer",
+        period: "Jun 2024 – Present",
+        points: [
+          "Full-time role based in Colombo, Sri Lanka",
+          "Developing web applications utilizing the MERN Stack",
+        ],
+      },
+      {
+        role: "Software Engineer Intern",
+        period: "May 2023 – May 2024",
+        points: [
+          "Internship based in Colombo, Sri Lanka",
+          "Gained hands-on experience in PHP, Software Design, and various other technologies",
+        ],
+      }
+    ]
   },
   {
-    role: "Full Stack Developer",
-    company: "Orbit Digital",
-    period: "2020 – 2022",
-    points: [
-      "Built 3 client-facing SaaS products from 0 to production",
-      "Integrated Stripe payments & real-time notifications via WebSockets",
-      "Migrated legacy monolith to containerized microservices on AWS",
-    ],
-  },
-  {
-    role: "Frontend Developer",
-    company: "Pixel Labs",
-    period: "2018 – 2020",
-    points: [
-      "Developed React component library used across 8 internal products",
-      "Improved Lighthouse performance score from 54 to 96",
-      "Shipped 20+ features in Agile sprints with cross-functional teams",
-    ],
+    company: "State Timber Corporation",
+    roles: [
+      {
+        role: "Software Engineer Intern",
+        period: "Apr 2022 – Apr 2023",
+        points: [
+          "Focused on PHP development and Web Design",
+          "Completed a one year internship program",
+        ],
+      }
+    ]
   },
 ];
 
@@ -62,7 +66,7 @@ export default function Experience() {
         <div style={{ display: "flex", flexDirection: "column", gap: "4rem" }}>
           {EXPERIENCE.map((exp, i) => (
             <motion.div 
-              key={exp.company}
+              key={i}
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true, margin: "-100px" }}
@@ -80,35 +84,46 @@ export default function Experience() {
               </div>
               
               <div className="glass-panel" style={{ padding: "2.5rem", transition: "transform 0.3s" }} onMouseEnter={e => e.currentTarget.style.transform = "translateX(5px)"} onMouseLeave={e => e.currentTarget.style.transform = "none"}>
-                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "1rem", marginBottom: "0.5rem" }}>
-                  <h3 style={{
-                    fontFamily: "var(--font-heading)",
-                    fontSize: "1.4rem", fontWeight: 700,
-                    color: "var(--text-primary)", margin: 0,
-                  }}>{exp.role}</h3>
-                  <span style={{
-                    fontSize: "12px", color: "var(--accent-primary)", fontWeight: 700,
-                    padding: "6px 14px", border: "1px solid var(--glass-border)",
-                    borderRadius: "999px", letterSpacing: "1px", background: "rgba(249,115,22,0.1)",
-                  }}>{exp.period}</span>
-                </div>
+                <h3 style={{
+                  fontFamily: "var(--font-heading)",
+                  fontSize: "1.6rem", fontWeight: 700,
+                  color: "var(--text-primary)", margin: "0 0 2rem 0",
+                }}>{exp.company}</h3>
                 
-                <div style={{
-                  fontSize: "15px", color: "var(--text-secondary)",
-                  marginBottom: "1.5rem", letterSpacing: "1px", fontWeight: 500,
-                }}>{exp.company}</div>
-                
-                <ul style={{ margin: 0, padding: 0, listStyle: "none", display: "flex", flexDirection: "column", gap: "1rem" }}>
-                  {exp.points.map((pt, j) => (
-                    <li key={j} style={{
-                      fontSize: "1.05rem", color: "var(--text-secondary)",
-                      display: "flex", gap: "1rem", alignItems: "flex-start", fontWeight: 300, lineHeight: 1.6
+                <div style={{ display: "flex", flexDirection: "column", gap: "2.5rem" }}>
+                  {exp.roles.map((r, roleIdx) => (
+                    <div key={roleIdx} style={{
+                      position: "relative",
+                      paddingLeft: "1.5rem",
+                      borderLeft: "2px solid rgba(255,255,255,0.05)"
                     }}>
-                      <span style={{ color: "var(--accent-primary)", marginTop: "2px" }}>▹</span>
-                      {pt}
-                    </li>
+                      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "1rem", marginBottom: "0.5rem" }}>
+                        <h4 style={{
+                          fontFamily: "var(--font-heading)",
+                          fontSize: "1.3rem", fontWeight: 600,
+                          color: "var(--text-primary)", margin: 0,
+                        }}>{r.role}</h4>
+                        <span style={{
+                          fontSize: "12px", color: "var(--accent-primary)", fontWeight: 700,
+                          padding: "6px 14px", border: "1px solid var(--glass-border)",
+                          borderRadius: "999px", letterSpacing: "1px", background: "rgba(249,115,22,0.1)",
+                        }}>{r.period}</span>
+                      </div>
+                      
+                      <ul style={{ margin: "1rem 0 0 0", padding: 0, listStyle: "none", display: "flex", flexDirection: "column", gap: "1rem" }}>
+                        {r.points.map((pt, j) => (
+                          <li key={j} style={{
+                            fontSize: "1.05rem", color: "var(--text-secondary)",
+                            display: "flex", gap: "1rem", alignItems: "flex-start", fontWeight: 300, lineHeight: 1.6
+                          }}>
+                            <span style={{ color: "var(--accent-primary)", marginTop: "2px" }}>▹</span>
+                            {pt}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
                   ))}
-                </ul>
+                </div>
               </div>
             </motion.div>
           ))}
